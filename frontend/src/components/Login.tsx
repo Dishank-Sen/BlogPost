@@ -18,6 +18,7 @@ export default function Login() {
     try {
       const res = await fetch("http://localhost:3000/api/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "content-type": "application/json",
         },

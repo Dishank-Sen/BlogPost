@@ -16,6 +16,7 @@ type User struct {
 }
 
 var client *mongo.Client
+var jwtSecret = []byte(os.Getenv("JWT_SECRET"))
 
 func main(){
 	err := godotenv.Load()
@@ -32,6 +33,7 @@ func main(){
 	port := ":3000"
 	http.HandleFunc("/api/signup", withCORS(handleSignup))
 	http.HandleFunc("/api/login", withCORS(handleLogin))
+	http.HandleFunc("/api/loginStatus", withCORS(handleLoginStatus))
 	fmt.Println("Server running on", port)
 	http.ListenAndServe(port,nil)
 }
